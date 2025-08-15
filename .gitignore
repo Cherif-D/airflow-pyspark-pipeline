@@ -21,14 +21,15 @@ airflow/airflow.cfg
 logs/
 
 # Données & sorties locales
-data/
+
 processed/
 rejected/
-output/
+bad_lines/
+
 
 # Fichiers volumineux générés
 *.parquet
-*.csv
+
 *.log
 *.zip
 *.gz
