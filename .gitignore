@@ -21,23 +21,22 @@ airflow/airflow.cfg
 logs/
 
 # Données & sorties locales
-
 processed/
 rejected/
 bad_lines/
 
-
 # Fichiers volumineux générés
 *.parquet
-
 *.log
 *.zip
 *.gz
 *.bz2
 *.xz
-*.jar
-*.whl
 
 # Docker (optionnel)
 docker-compose.override.yml
 *.pid
+
+# --- Allow offline wheels for Docker build ---
+!docker/airflow/wheels/*.whl
+!docker/airflow/wheels/*.tar.gz
