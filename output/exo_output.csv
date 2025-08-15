@@ -1,0 +1,6 @@
+breakdown_type,max_run_length,levels
+public_transport_hd,1,15
+standard,11,"12,14,17,18,19"
+standard_hd,3,"13,14,18"
+traffic,3,"14,17"
+traffic_hd,2,12

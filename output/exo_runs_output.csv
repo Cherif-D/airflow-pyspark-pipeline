@@ -1,0 +1,13 @@
+Breakdown_Type,Count_Successive,Breakdowns_Level
+standard,4,"19,12,14,19"
+traffic,1,14
+traffic_hd,1,12
+standard_hd,1,13
+traffic_hd,1,12
+standard,1,14
+standard_hd,1,14
+traffic,2,"14,17"
+standard,2,"19,17"
+public_transport_hd,1,15
+standard,4,"18,18,19,14"
+standard_hd,1,18
