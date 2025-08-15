@@ -1,0 +1,270 @@
+Structure du dossier pour le volume Acer
+Le numéro de série du volume est 484D-42BA
+C:.
+¦   .env
+¦   docker-compose.yml
+¦   Document technico fonctionnel.docx
+¦   PROJET_SDA_2025.pdf
+¦   structure.txt
+¦   
++---bad_lines
+¦   +---bad_lines_1754759690
+¦   ¦       .part-00000-b44fde55-1588-4ad3-94ce-36b789db626a-c000.txt.crc
+¦   ¦       ._SUCCESS.crc
+¦   ¦       part-00000-b44fde55-1588-4ad3-94ce-36b789db626a-c000.txt
+¦   ¦       _SUCCESS
+¦   ¦       
+¦   +---bad_lines_1754785183
+¦   ¦       .part-00000-48785c03-1d85-45c6-b051-c1b1acedfcfe-c000.txt.crc
+¦   ¦       ._SUCCESS.crc
+¦   ¦       part-00000-48785c03-1d85-45c6-b051-c1b1acedfcfe-c000.txt
+¦   ¦       _SUCCESS
+¦   ¦       
+¦   +---bad_lines_1754786185
+¦   ¦       .part-00000-89eee2cf-66e5-4a2b-a57a-1dd1e55bc03a-c000.txt.crc
+¦   ¦       ._SUCCESS.crc
+¦   ¦       part-00000-89eee2cf-66e5-4a2b-a57a-1dd1e55bc03a-c000.txt
+¦   ¦       _SUCCESS
+¦   ¦       
+¦   +---bad_lines_1754786904
+¦           .part-00000-f009be94-c2ca-4e4d-8da6-c46b708a5679-c000.txt.crc
+¦           ._SUCCESS.crc
+¦           part-00000-f009be94-c2ca-4e4d-8da6-c46b708a5679-c000.txt
+¦           _SUCCESS
+¦           
++---dags
+¦   ¦   breakdown_dag.py
+¦   ¦   
+¦   +---__pycache__
+¦           breakdown_dag.cpython-311.pyc
+¦           
++---data
+¦       break_down.txt
+¦       
++---docker
+¦   +---airflow
+¦       ¦   Dockerfile
+¦       ¦   requirements.txt
+¦       ¦   
+¦       +---wheels
+¦               py4j-0.10.9.7-py2.py3-none-any.whl
+¦               py4j-0.10.9.7.tar.gz
+¦               pyspark-3.5.1-py2.py3-none-any.whl
+¦               pyspark-3.5.1.tar.gz
+¦               
++---jobs
+¦       breakdown_job.py
+¦       
++---logs
+¦   +---dag_id=breakdown_pipeline
+¦   ¦   +---run_id=manual__2025-01-01T00?00?00+00?00
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=run_pyspark_job
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-01-02T00?00?00+00?00
+¦   ¦   ¦   +---task_id=run_pyspark_job
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-01-03T00?00?00+00?00
+¦   ¦   ¦   +---task_id=run_pyspark_job
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-01-04T00?00?00+00?00
+¦   ¦   ¦   +---task_id=run_pyspark_job
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-01-05T00?00?00+00?00
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=run_pyspark_job
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-09T15?00?19.427570+00?00
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=run_pyspark_job
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       attempt=2.log
+¦   ¦   ¦   ¦       attempt=2.log.SchedulerJob.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-09T15?00?32.241084+00?00
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=run_pyspark_job
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       attempt=2.log
+¦   ¦   ¦   ¦       attempt=2.log.SchedulerJob.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-09T15?01?53.639773+00?00
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=run_pyspark_job
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       attempt=2.log
+¦   ¦   ¦   ¦       attempt=2.log.SchedulerJob.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-10T00?19?07.634945+00?00
+¦   ¦   ¦   +---task_id=Compute
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=Read
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=SaveResult
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=SortData
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-10T00?35?51.710255+00?00
+¦   ¦   ¦   +---task_id=Compute
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=Read
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=SaveResult
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=SortData
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-10T00?47?43.798581+00?00
+¦   ¦   ¦   +---task_id=Compute
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=Read
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=SaveResult
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=SortData
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-11T15?28?03.143391+00?00
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=Read
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       attempt=1.log.SchedulerJob.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-11T15?29?27.814450+00?00
+¦   ¦   ¦   +---task_id=fix_pyspark_perms
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=Read
+¦   ¦   ¦   ¦       attempt=1.log
+¦   ¦   ¦   ¦       attempt=1.log.SchedulerJob.log
+¦   ¦   ¦   ¦       attempt=2.log
+¦   ¦   ¦   ¦       attempt=3.log
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---task_id=validate_input
+¦   ¦   ¦           attempt=1.log
+¦   ¦   ¦           
+¦   ¦   +---run_id=manual__2025-08-11T15?39?38.770246+00?00
+¦   ¦       +---task_id=fix_pyspark_perms
+¦   ¦       ¦       attempt=1.log
+¦   ¦       ¦       
+¦   ¦       +---task_id=Read
+¦   ¦       ¦       attempt=1.log
+¦   ¦       ¦       attempt=2.log
+¦   ¦       ¦       
+¦   ¦       +---task_id=validate_input
+¦   ¦               attempt=1.log
+¦   ¦               
+¦   +---dag_processor_manager
+¦   ¦       dag_processor_manager.log
+¦   ¦       
+¦   +---scheduler
+¦       +---2025-08-08
+¦       +---2025-08-09
+¦       ¦       breakdown_dag.py.log
+¦       ¦       
+¦       +---2025-08-10
+¦       ¦       breakdown_dag.py.log
+¦       ¦       
+¦       +---2025-08-11
+¦       ¦       breakdown_dag.py.log
+¦       ¦       
+¦       +---2025-08-15
+¦       ¦       breakdown_dag.py.log
+¦       ¦       
+¦       +---latest
++---output
+    ¦   exo_output.csv
+    ¦   exo_runs_output.csv
+    ¦   final.csv
+    ¦   runs.csv
+    ¦   
+    +---parsed
+    ¦       .part-00000-cfaa6217-28c8-4404-a7fe-ec34b9990220-c000.snappy.parquet.crc
+    ¦       ._SUCCESS.crc
+    ¦       part-00000-cfaa6217-28c8-4404-a7fe-ec34b9990220-c000.snappy.parquet
+    ¦       _SUCCESS
+    ¦       
+    +---runs
+    ¦       .part-00000-25a00053-9352-4800-bafc-bf6e1611aafa-c000.csv.crc
+    ¦       ._SUCCESS.crc
+    ¦       part-00000-25a00053-9352-4800-bafc-bf6e1611aafa-c000.csv
+    ¦       _SUCCESS
+    ¦       
+    +---summary
+            .part-00000-81b3e8cc-e6e8-437b-b2b6-b3b40ebda2c9-c000.csv.crc
+            ._SUCCESS.crc
+            part-00000-81b3e8cc-e6e8-437b-b2b6-b3b40ebda2c9-c000.csv
+            _SUCCESS
+            

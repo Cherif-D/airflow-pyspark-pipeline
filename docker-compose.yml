@@ -1,0 +1,95 @@
+# -------- Variables communes aux services Airflow --------
+x-airflow-env: &airflow_env
+  AIRFLOW__CORE__EXECUTOR: LocalExecutor
+  AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+  AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+  AIRFLOW__WEBSERVER__SECRET_KEY: "a-very-secret-key"
+  AIRFLOW__CORE__FERNET_KEY: "TNoM4hNHWSCwIehU03IppTIxlLJAk94jU7UoCWfaWis="
+  AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "True"
+  _PIP_ADDITIONAL_REQUIREMENTS: ""
+  PYSPARK_PYTHON: python
+
+  # >>> Ajouts pour éviter le timeout du webserver
+  AIRFLOW__WEBSERVER__WORKERS: "2"                       # moins de RAM au démarrage
+  AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: "300"   # au lieu de 120s
+  AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: "300"
+  AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT: "120"
+
+services:
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  airflow-init:
+    build:
+      context: ./docker/airflow
+    image: ${AIRFLOW_IMAGE_NAME}
+    depends_on:
+      - postgres
+    environment:
+      <<: *airflow_env
+      AIRFLOW_UID: ${AIRFLOW_UID}
+    # IMPORTANT : commande en "liste" et tout sur UNE SEULE LIGNE
+    command:
+      - bash
+      - -lc
+      - airflow db migrate && airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com || true
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./jobs:/opt/airflow/jobs
+      - ./logs:/opt/airflow/logs
+      - ./data:/opt/airflow/data
+      - ./output:/opt/airflow/output
+      - ./bad_lines:/opt/airflow/bad_lines
+
+  airflow-webserver:
+    image: ${AIRFLOW_IMAGE_NAME}
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - airflow-init
+    ports:
+      - "8089:8080"   # changé de 8088 à 8089 pour éviter les conflits
+    environment:
+      <<: *airflow_env
+      AIRFLOW_UID: ${AIRFLOW_UID}
+    command: webserver
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./jobs:/opt/airflow/jobs
+      - ./logs:/opt/airflow/logs
+      - ./data:/opt/airflow/data
+      - ./output:/opt/airflow/output
+      - ./bad_lines:/opt/airflow/bad_lines
+
+  airflow-scheduler:
+    image: ${AIRFLOW_IMAGE_NAME}
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - airflow-init
+    environment:
+      <<: *airflow_env
+      AIRFLOW_UID: ${AIRFLOW_UID}
+    command: scheduler
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./jobs:/opt/airflow/jobs
+      - ./logs:/opt/airflow/logs
+      - ./data:/opt/airflow/data
+      - ./output:/opt/airflow/output
+      - ./bad_lines:/opt/airflow/bad_lines
+
+volumes:
+  postgres-db-volume:
